@@ -1,11 +1,11 @@
 import { useSearch } from "../contexts/SearchContext";
 import { CloseIcon } from "../assets";
 
-type GenresFilterProps = {
+type GenreFilterItemProps = {
     genre: string
 }
 
-export default function GenresFilter({ genre }: GenresFilterProps ) {
+export default function GenreFilterItem({ genre }: GenreFilterItemProps ) {
     const { genresFilter, handleRemoveGenreFilter } = useSearch()
 
     return (

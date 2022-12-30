@@ -34,6 +34,26 @@
     border-radius: 8px;
     border: solid 2px #E5E7EB;
   }
+
+  .primary-scroll-light::-webkit-scrollbar {
+    width: 16px;
+  }
+  
+  .primary-scroll-light::-webkit-scrollbar-thumb {
+    background-color: #9CA3AF;
+    border-radius: 16px;
+    border: solid 4px #fff;
+  }
+
+  .primary-scroll-dark::-webkit-scrollbar {
+    width: 16px;
+  }
+  
+  .primary-scroll-dark::-webkit-scrollbar-thumb {
+    background-color: #9CA3AF;
+    border-radius: 16px;
+    border: solid 4px #111827;
+  }
 }
 
 @font-face {

@@ -19,7 +19,7 @@ export default function UserMenu() {
     }, []);
 
     return (
-        <div className={`flex justify-end gap-6 flex-1`}>
+        <div className={`flex justify-end gap-6 flex-1 pr-1.5`}>
             <button onClick={handleToggleTheme} className={`hover:bg-gray-100 dark:hover:bg-gray-700 p-1.5 rounded-full transition-opacity duration-700
           ${opacity === 100 ? 'opacity-100' : 'opacity-0'}`}>
                 {theme === 'light' ? <MoonIcon /> : <SunIcon />}
