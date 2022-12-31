@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useInfiniteQuery } from 'react-query'
 import z from 'zod'
 import { useSearch } from '../contexts/SearchContext'
@@ -31,9 +32,10 @@ const animeDataValidator = z.object({
 
 export function useAnimesSeasonalData() {
     const { seasonal } = useSearch()
+    const router = useRouter()
 
     async function fetchAnimes({ pageParam = 1 }) {
-        const query = `https://api.jikan.moe/v4/seasons/${seasonal.year}/${seasonal.season}?page=${pageParam}`
+        const query = `https://api.jikan.moe/v4/seasons/${seasonal.year}/${seasonal.season}?page=${pageParam}&limit=24`
         const response = await (await fetch(query)).json()
 
         return animeDataValidator.parse(response)
@@ -49,7 +51,8 @@ export function useAnimesSeasonalData() {
                 }
             },
             staleTime: 24 * 60 * 60 * 1000,
-            cacheTime: 24 * 60 * 60 * 1000
+            cacheTime: 24 * 60 * 60 * 1000,
+            enabled: router.asPath === '/seasonal'
         })
     )
 }

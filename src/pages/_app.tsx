@@ -7,6 +7,7 @@ import { ThemeContextProvider } from '../contexts/ThemeContext'
 import { MenuContextProvider } from '../contexts/MenuContext'
 import { SearchContextProvider } from '../contexts/SearchContext'
 import { QueryClientProvider, QueryClient } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 import { FavoriteContextProvider } from '../contexts/FavoriteContext'
 import { useState } from 'react'
 import Nav from '../components/Nav'
@@ -31,6 +32,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
                   <Component {...pageProps} />
                 </FavoriteContextProvider>
               </SearchContextProvider>
+              {/* <ReactQueryDevtools initialIsOpen={false} position='bottom-right' /> */}
             </QueryClientProvider>
           </MenuContextProvider>
         </ThemeContextProvider>

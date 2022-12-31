@@ -24,6 +24,7 @@
     "zod": "^3.20.2"
   },
   "devDependencies": {
+    "@tailwindcss/line-clamp": "^0.4.2",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
     "tailwind-scrollbar": "^2.0.1",

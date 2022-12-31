@@ -11,7 +11,7 @@ export default function GenresDropdown() {
     'Mystery', 'Romance', 'Sci-Fi', 'Slice of Life', 'Sports', 'Supernatural', 'Suspense']
 
     return (
-        <button className={`relative w-40 h-8 bg-gray-100 dark:bg-gray-700 rounded-md cursor-default ${isOpen ? 'rounded-b-none' : ''}`}
+        <button className={`text-sm relative w-40 h-8 bg-gray-100 dark:bg-gray-700 rounded-md cursor-default ${isOpen ? 'rounded-b-none' : ''}`}
             onBlur={() => {
                 isOpen && setIsOpen(false)
                 lastHovered && setLastHovered('')

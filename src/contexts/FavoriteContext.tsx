@@ -7,7 +7,7 @@ type FavoriteContextProviderProps = {
 
 type FavoriteContextType = {
     favoritedAnimes: FavoritedAnimeType[]
-    addFavorite: ({ }: AnimeDataType) => void
+    addFavorite: ({ }: NormalizedAnimeType) => void
     removeFavorite: (mal_id: number) => void
     editFavorite: ({ }: FavoritedAnimeType) => void
     isFavorited: (mal_id: number) => boolean
@@ -15,9 +15,10 @@ type FavoriteContextType = {
     page: number
     loadMore: () => void
     resetPage: () => void
+    normalizeAnime: ({ }: AnimeDataType) => NormalizedAnimeType
 }
 
-type FavoritedAnimeType = {
+type NormalizedAnimeType = {
     mal_id: number
     title: string
     aired: string | 'Unknown'
@@ -26,10 +27,13 @@ type FavoritedAnimeType = {
     imageUrl: string
     synopsis: string
     score: number | 'N/A'
+}
+
+type FavoritedAnimeType = {
     stage: 'watch' | 'finished' | 'dropped'
     personalNote: string
     personalTier: 'SS' | 'S' | 'A' | 'B' | 'C' | 'D' | 'E' | null
-}
+} & NormalizedAnimeType
 
 type AnimeDataType = {
     mal_id: number
@@ -70,13 +74,7 @@ export function FavoriteContextProvider({ children }: FavoriteContextProviderPro
         }
     }, [status])
 
-    function addFavorite({ mal_id, images: { jpg: { image_url: imageUrl } }, title, episodes: eps, aired: { from }, score: a_score, synopsis: a_synopsis, genres: a_genres }: AnimeDataType) {
-        const aired = from ? new Date(from).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : 'Unknown'
-        const episodes = eps ? `${eps} ${eps === 1 ? 'episode' : 'episodes'}` : 'Unknown'
-        const score = a_score || 'N/A'
-        const synopsis = a_synopsis || ''
-        const genres = a_genres.map(obj => obj.name)
-
+    function addFavorite({ mal_id, title, aired, episodes, genres, imageUrl, synopsis, score }: NormalizedAnimeType) {
         const animeData: FavoritedAnimeType = { mal_id, title, aired, episodes, genres, imageUrl, synopsis, score, stage: 'watch', personalNote: '', personalTier: null }
 
         setFavoritedAnimes([animeData, ...favoritedAnimes].sort((a, b) => {
@@ -85,6 +83,18 @@ export function FavoriteContextProvider({ children }: FavoriteContextProviderPro
 
             return bScore - aScore;
         }))
+    }
+
+    function normalizeAnime({ mal_id, images: { jpg: { image_url: imageUrl } }, title, episodes: eps, aired: { from }, score: a_score, synopsis: a_synopsis, genres: a_genres }: AnimeDataType) {
+        const aired = from ? new Date(from).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) : 'Unknown'
+        const episodes = eps ? `${eps} ${eps === 1 ? 'episode' : 'episodes'}` : 'Unknown'
+        const score = a_score || 'N/A'
+        const synopsis = a_synopsis || ''
+        const genres = a_genres.map(obj => obj.name)
+
+        const animeData: NormalizedAnimeType = { mal_id, title, aired, episodes, genres, imageUrl, synopsis, score }
+
+        return animeData
     }
 
     function removeFavorite(mal_id: number) {
@@ -171,7 +181,7 @@ export function FavoriteContextProvider({ children }: FavoriteContextProviderPro
     }
 
     return (
-        <FavoriteContext.Provider value={{ favoritedAnimes, addFavorite, removeFavorite, editFavorite, isFavorited, filterFavorite, page, loadMore, resetPage }}>
+        <FavoriteContext.Provider value={{ favoritedAnimes, addFavorite, removeFavorite, editFavorite, isFavorited, filterFavorite, page, loadMore, resetPage, normalizeAnime }}>
             {children}
         </FavoriteContext.Provider>
     )

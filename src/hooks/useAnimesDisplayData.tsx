@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useInfiniteQuery } from 'react-query'
 import z from 'zod'
 import { useSearch } from '../contexts/SearchContext'
@@ -31,6 +32,7 @@ const animeDataValidator = z.object({
 
 export function useAnimesDisplayData() {
     const { orderBy, genresFilter, searchAnimeDisplayQuery } = useSearch()
+    const router = useRouter()
     const sort = orderBy === 'Score' ? 'desc' : 'asc'
 
     function genreId() {
@@ -58,7 +60,7 @@ export function useAnimesDisplayData() {
     }
 
     return (
-        useInfiniteQuery(['animes', orderBy, genresFilter, searchAnimeDisplayQuery], fetchAnimes, {
+        useInfiniteQuery(['display', orderBy, genresFilter, searchAnimeDisplayQuery], fetchAnimes, {
             getNextPageParam: (lastPage, pages) => {
                 if (lastPage.pagination.has_next_page) {
                     return pages.length + 1
@@ -67,7 +69,8 @@ export function useAnimesDisplayData() {
                 }
             },
             staleTime: 24 * 60 * 60 * 1000,
-            cacheTime: 24 * 60 * 60 * 1000
+            cacheTime: 24 * 60 * 60 * 1000,
+            enabled: router.asPath === '/',
         })
     )
 }

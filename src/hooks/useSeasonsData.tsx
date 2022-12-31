@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { useQuery } from 'react-query'
 import z from 'zod'
 
@@ -11,6 +12,8 @@ const seasonDataValidator = z.object({
 })
 
 export function useSeasonsData() {
+    const router = useRouter()
+
     async function fetchSeasons() {
         const query = `https://api.jikan.moe/v4/seasons`
         const response = await (await fetch(query)).json()
@@ -22,7 +25,7 @@ export function useSeasonsData() {
         useQuery('seasons', fetchSeasons, {
             staleTime: 24 * 60 * 60 * 1000,
             cacheTime: 24 * 60 * 60 * 1000,
-
+            enabled: router.asPath === '/seasonal'
         })
     )
 }

@@ -21,7 +21,7 @@ export function useAnimesHintData() {
     }
 
     return (
-        useQuery(['animes', searchAnimeHintQuery], fetchAnimes, {
+        useQuery(['hint', searchAnimeHintQuery], fetchAnimes, {
             staleTime: 24 * 60 * 60 * 1000,
             cacheTime: 24 * 60 * 60 * 1000,
             enabled: searchAnimeHintQuery.length >= 1 && route.asPath === '/' 
