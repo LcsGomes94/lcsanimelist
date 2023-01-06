@@ -14,7 +14,7 @@ export default function SearchHistoryItem({ type, title, selected }: SearchHisto
 
     return (
         <li className={`group`}>
-            <button className={`w-full cursor-default`} onMouseDown={() => {
+            <button className={`w-full cursor-default bg-white dark:bg-gray-900`} onMouseDown={() => {
                 handleSelectSearchItem(title)
                 resetPage()
             }}>

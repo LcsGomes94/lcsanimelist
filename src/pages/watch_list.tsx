@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import AnimeCard from "../components/AnimeCard";
 import AnimesShowing from "../components/AnimesShowing";
 import GenreFilterGroup from "../components/GenreFilterGroup";
@@ -14,6 +14,29 @@ export default function WatchList() {
   const { filterFavorite, loadMore, page } = useFavorite()
   const { favoritedSearchQuery, orderBy, genresFilter } = useSearch()
   const { isMenuOpen } = useMenu()
+
+  const observer = useRef<IntersectionObserver | null>(null)
+  const lastAnimeElement = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (hasMore) {
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting) {
+          loadMore()
+        }
+      })
+
+      if (lastAnimeElement.current) {
+        observer.current.observe(lastAnimeElement.current)
+      }
+    }
+
+    return () => {
+      if (observer.current) {
+        observer.current.disconnect()
+      }
+    }
+  },[hasMore, page])
 
   function favoriteList() {
     const filteredAnimes = filterFavorite('watch', favoritedSearchQuery, genresFilter, orderBy)
@@ -38,12 +61,11 @@ export default function WatchList() {
       </div>
 
       <div className={`flex flex-wrap justify-center gap-x-5 gap-y-12 pr-11 pt-11 pb-16`}>
-        {favoriteList().map(anime => (
-          <AnimeCard key={anime.mal_id} anime={anime} />
-        ))}
+        {favoriteList().map((anime, animeI, array) => {
+          const isLast = animeI === array.length - 1
+          return <AnimeCard cardRef={isLast ? lastAnimeElement : null} key={anime.mal_id} anime={anime} />
+        })}
       </div>
-
-      {hasMore && <button onClick={() => loadMore()} >Load More</button>}
     </div>
   )
 }

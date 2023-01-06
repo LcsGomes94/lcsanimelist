@@ -8,7 +8,7 @@ import SignOut from "./SignOut";
 export default function UserMenu() {
     const { data: session } = useSession()
     const { theme, handleToggleTheme } = useTheme()
-    const [opacity, setOpacity] = useState(0);
+    const [opacity, setOpacity] = useState(0)
 
     // Makes sure there's no layout shift in the userMenu applying opacity transition.
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function UserMenu() {
         setTimeout(() => {
             setOpacity(100)
         }, timeOut)
-    }, []);
+    }, [])
 
     return (
         <div className={`flex justify-end gap-6 flex-1 pr-1.5`}>

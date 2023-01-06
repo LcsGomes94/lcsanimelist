@@ -5,7 +5,7 @@ export function MoveIcon(props: SVGProps<SVGSVGElement>) {
         <svg
             width={21}
             height={18}
-            viewBox="0 0 26 23"
+            viewBox="0 0 21 18"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             {...props}
