@@ -37,8 +37,19 @@ export default function AnimeCardSkeletons() {
                             </div>
                             <div className={`w-1/2 bg-gray-100 dark:bg-gray-700`}>
                                 <div className={`pl-3 pr-1 py-1`}>
-                                    <p className={`text-xs leading-5 whitespace-pre-wrap pr-3 overflow-y-auto card-scroll-light dark:card-scroll-dark w-full h-full aspect-[189/254]`}>
-
+                                    <p className={`flex flex-col gap-2 leading-5 whitespace-pre-wrap pr-3 overflow-y-auto card-scroll-light dark:card-scroll-dark w-full h-full aspect-[189/254]`}>
+                                        <div className={`rounded-full bg-gray-200  dark:bg-gray-600 h-3 w-full mt-1.5`} />
+                                        <div className={`rounded-full bg-gray-200  dark:bg-gray-600 h-3 w-full`} />
+                                        <div className={`rounded-full bg-gray-200  dark:bg-gray-600 h-3 w-full`} />
+                                        <div className={`rounded-full bg-gray-200  dark:bg-gray-600 h-3 w-1/2`} />
+                                        <div className={`rounded-full h-3 w-full`} />
+                                        <div className={`rounded-full bg-gray-200  dark:bg-gray-600 h-3 w-full`} />
+                                        <div className={`rounded-full bg-gray-200  dark:bg-gray-600 h-3 w-full`} />
+                                        <div className={`rounded-full bg-gray-200  dark:bg-gray-600 h-3 w-full`} />
+                                        <div className={`rounded-full bg-gray-200  dark:bg-gray-600 h-3 w-4/5`} />
+                                        <div className={`rounded-full h-3 w-full`} />
+                                        <div className={`rounded-full bg-gray-200  dark:bg-gray-600 h-3 w-full`} />
+                                        <div className={`rounded-full bg-gray-200  dark:bg-gray-600 h-3 w-1/4`} />
                                     </p>
                                 </div>
                                 <div className={`flex justify-around items-center h-9 rounded-tr-lg bg-gray-200 dark:bg-gray-800`}>
