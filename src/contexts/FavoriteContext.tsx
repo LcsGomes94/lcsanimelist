@@ -16,7 +16,6 @@ type FavoriteContextType = {
     loadMore: () => void
     resetPage: () => void
     normalizeAnime: ({ }: AnimeDataType) => NormalizedAnimeType
-    updateFavorite: (anime: NormalizedAnimeType) => void
 }
 
 type NormalizedAnimeType = {
@@ -173,15 +172,6 @@ export function FavoriteContextProvider({ children }: FavoriteContextProviderPro
         return favoritedAnimes.some(anime => anime.mal_id === mal_id)
     }
 
-    function updateFavorite(anime: NormalizedAnimeType) {
-        setFavoritedAnimes(favoritedAnimes => (
-            favoritedAnimes.map(favoritedAnime => {
-                return favoritedAnime.mal_id === anime.mal_id ? { ...favoritedAnime, ...anime } : favoritedAnime
-            })
-        ))
-        console.log('atualizou')
-    }
-
     function loadMore() {
         setPage(page + 1)
     }
@@ -191,7 +181,7 @@ export function FavoriteContextProvider({ children }: FavoriteContextProviderPro
     }
 
     return (
-        <FavoriteContext.Provider value={{ favoritedAnimes, addFavorite, removeFavorite, editFavorite, isFavorited, filterFavorite, page, loadMore, resetPage, normalizeAnime, updateFavorite }}>
+        <FavoriteContext.Provider value={{ favoritedAnimes, addFavorite, removeFavorite, editFavorite, isFavorited, filterFavorite, page, loadMore, resetPage, normalizeAnime }}>
             {children}
         </FavoriteContext.Provider>
     )

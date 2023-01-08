@@ -1,6 +1,7 @@
 import { RefObject } from "react";
 import { EditIcon, FavoriteIcon, MoveIcon, ScoreIcon } from "../assets";
 import { useFavorite } from "../contexts/FavoriteContext";
+import { useModal } from "../contexts/ModalContext";
 
 type AnimeType = {
     mal_id: number
@@ -34,6 +35,7 @@ function background(t: 'SS' | 'S' | 'A' | 'B' | 'C' | 'D' | 'E' | null | undefin
 
 export default function AnimeCard({ anime, cardRef }: AnimeCardType) {
     const { addFavorite, removeFavorite, isFavorited } = useFavorite()
+    const { handleOpenEditModal, handleOpenMoveModal } = useModal()
 
     return (
         <div ref={cardRef} className={`flex flex-col justify-center flex-1 min-w-[22rem] max-w-[24rem]`}>
@@ -79,7 +81,7 @@ export default function AnimeCard({ anime, cardRef }: AnimeCardType) {
                             {anime.stage === 'watch' &&
                                 <button className={`flex justify-center items-center h-7 w-7 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600`}
                                     onClick={() => {
-                                        //
+                                        handleOpenMoveModal(anime)
                                     }}>
                                     <MoveIcon />
                                 </button>}
@@ -100,7 +102,7 @@ export default function AnimeCard({ anime, cardRef }: AnimeCardType) {
                                 </button> :
                                 <button className={`flex justify-center items-center h-7 w-7 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600`}
                                     onClick={() => {
-                                        //
+                                        handleOpenEditModal(anime)
                                     }}>
                                     <EditIcon />
                                 </button>}

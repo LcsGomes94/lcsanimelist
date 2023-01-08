@@ -3,17 +3,20 @@ import AnimeCard from "../components/AnimeCard";
 import AnimesShowing from "../components/AnimesShowing";
 import GenreFilterGroup from "../components/GenreFilterGroup";
 import GenresDropdown from "../components/GenresDropdown";
+import MoveModal from "../components/MoveModal";
 import OrderByDropdown from "../components/OrderByDropdown";
 import { useFavorite } from "../contexts/FavoriteContext";
 import { useMenu } from "../contexts/MenuContext";
+import { useModal } from "../contexts/ModalContext";
 import { useSearch } from "../contexts/SearchContext";
 
 export default function WatchList() {
   const [hasMore, setHasMore] = useState(false)
 
   const { filterFavorite, loadMore, page } = useFavorite()
-  const { favoritedSearchQuery, orderBy, genresFilter } = useSearch()
+  const { favoritedSearchQuery, orderBy, genresFilter, handleSetOrderBy } = useSearch()
   const { isMenuOpen } = useMenu()
+  const { isMoveModalOpen } = useModal()
 
   const observer = useRef<IntersectionObserver | null>(null)
   const lastAnimeElement = useRef<HTMLDivElement>(null)
@@ -37,6 +40,10 @@ export default function WatchList() {
       }
     }
   },[hasMore, page])
+
+  useEffect(() => {
+    orderBy !== 'Score' && handleSetOrderBy('Score')
+  }, [])
 
   function favoriteList() {
     const filteredAnimes = filterFavorite('watch', favoritedSearchQuery, genresFilter, orderBy)
@@ -66,6 +73,7 @@ export default function WatchList() {
           return <AnimeCard cardRef={isLast ? lastAnimeElement : null} key={anime.mal_id} anime={anime} />
         })}
       </div>
+      {isMoveModalOpen && <MoveModal />}
     </div>
   )
 }

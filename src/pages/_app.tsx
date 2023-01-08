@@ -7,10 +7,10 @@ import { ThemeContextProvider } from '../contexts/ThemeContext'
 import { MenuContextProvider } from '../contexts/MenuContext'
 import { SearchContextProvider } from '../contexts/SearchContext'
 import { QueryClientProvider, QueryClient } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
 import { FavoriteContextProvider } from '../contexts/FavoriteContext'
 import { useState } from 'react'
 import Nav from '../components/Nav'
+import { ModalContextProvider } from '../contexts/ModalContext'
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [queryClient] = useState(() => new QueryClient())
@@ -27,12 +27,13 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
             <QueryClientProvider client={queryClient}>
               <SearchContextProvider>
                 <FavoriteContextProvider>
-                  <Header />
-                  <Nav />
-                  <Component {...pageProps} />
+                  <ModalContextProvider>
+                    <Header />
+                    <Nav />
+                    <Component {...pageProps} />
+                  </ModalContextProvider>
                 </FavoriteContextProvider>
               </SearchContextProvider>
-              {/* <ReactQueryDevtools initialIsOpen={false} position='bottom-right' /> */}
             </QueryClientProvider>
           </MenuContextProvider>
         </ThemeContextProvider>

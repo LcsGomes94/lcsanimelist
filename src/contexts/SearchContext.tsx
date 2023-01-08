@@ -167,7 +167,7 @@ export function SearchContextProvider({ children }: SearchContextProviderProps) 
 
     function resetSearchStates() {
         setInputValue('')
-        setOrderBy('Score')
+        router.asPath === '/finished' || router.asPath === '/dropped'? setOrderBy('Tier') : setOrderBy('Score')
         setGenresFilter('')
         setSearchAnimeHintQuery('')
         setSearchAnimeDisplayQuery('')

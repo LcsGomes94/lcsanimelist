@@ -85,6 +85,37 @@
     border-radius: 8px;
     border: solid 2px #1F2937;
   }
+
+  .textarea-scroll-dark::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .textarea-scroll-dark::-webkit-scrollbar-track {
+    background-color: #374151;
+    border-radius: 8px;
+  }
+  
+  .textarea-scroll-dark::-webkit-scrollbar-thumb {
+    background-color: #6B7280;
+    border-radius: 8px;
+    border: solid 2px #374151;
+  }
+
+  .textarea-scroll-light::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .textarea-scroll-light::-webkit-scrollbar-track {
+    margin-block: 2px;
+    background-color: #F3F4F6;
+    border-radius: 8px;
+  }
+  
+  .textarea-scroll-light::-webkit-scrollbar-thumb {
+    background-color: #9CA3AF;
+    border-radius: 8px;
+    border: solid 2px #F3F4F6;
+  }
 }
 
 @font-face {
