@@ -42,7 +42,7 @@ export default function Finished() {
   },[hasMore, page])
 
   useEffect(() => {
-    handleSetOrderBy('Tier')
+    orderBy !== 'Tier' && handleSetOrderBy('Tier')
   }, [])
 
   function favoriteList() {
