@@ -38,7 +38,7 @@ export default function AnimeCard({ anime, cardRef }: AnimeCardType) {
     const { handleOpenEditModal, handleOpenMoveModal } = useModal()
 
     return (
-        <div ref={cardRef} className={`flex flex-col justify-center flex-1 min-w-[22rem] max-w-[24rem]`}>
+        <div ref={cardRef} className={`flex flex-col justify-center flex-1 min-w-[19rem] lg:min-w-[22rem] max-w-[24rem]`}>
             <div className={`flex h-16 items-center justify-center`}>
                 <h2 className={`text-center text-2xl text-cyan-700 dark:text-cyan-400 overflow-hidden text-ellipsis line-clamp-2`}>{anime.title}</h2>
             </div>

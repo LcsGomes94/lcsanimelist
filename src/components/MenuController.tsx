@@ -12,8 +12,8 @@ export default function MenuController() {
     const queryClient = useQueryClient()
 
     return (
-        <div className={`flex items-center gap-2 pr-2.5 flex-1`}>
-            <button onClick={handleToggleMenu} className={`hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-full`}>
+        <div className={`flex items-center gap-2 pr-2.5 flex-1 pl-1.5 lg:pl-0`}>
+            <button onClick={handleToggleMenu} className={`hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded-full hidden lg:inline-block`}>
                 <MenuIcon />
             </button>
             <Link href={'/'} onClick={() => {
@@ -21,7 +21,7 @@ export default function MenuController() {
                 resetPage()
                 queryClient.clear()
             }} >
-                <Logo />
+                <Logo className={`h-[21px] lg:h-[24px] w-[124px] lg:w-[142px]`} />
             </Link>
         </div>
     )

@@ -15,7 +15,7 @@ export default function AnimeCardSkeletons() {
     return (
         <>
             {cards.map((value, i) => (
-                <div key={i} className={`flex flex-col justify-center flex-1 min-w-[22rem] max-w-[24rem] animate-pulse ${opacity === 100 ? 'opacity-100' : 'opacity-0'}`}>
+                <div key={i} className={`flex flex-col justify-center flex-1 min-w-[19rem] lg:min-w-[22rem] max-w-[24rem] animate-pulse ${opacity === 100 ? 'opacity-100' : 'opacity-0'}`}>
                     <div className={`flex h-16 items-center justify-center`}>
                         <div className={`flex justify-center items-center flex-1`}>
                             <div className={`bg-gray-100 dark:bg-gray-700 h-8 w-10/12 rounded-full`} />

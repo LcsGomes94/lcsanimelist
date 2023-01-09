@@ -37,15 +37,15 @@ export default function Seasonal() {
   }, [data])
 
   return (
-    <div className={`mt-20 pt-4 pr-3 pl-14 gap-2 ${isMenuOpen ? 'ml-52' : 'ml-[3.375rem]'}`}>
-      <div className={`flex items-center justify-start pr-11 w-full`}>
+    <div className={`mt-20 pt-4 pr-3 pl-8 lg:pl-14 gap-2 ml-[4.25rem] ${isMenuOpen ? 'lg:ml-52' : 'lg:ml-[3.375rem]'}`}>
+      <div className={`flex items-center justify-start pr-2 lg:pr-11 w-full`}>
         <div className={`flex flex-1 items-center pr-3`}>
           <SeasonalDropdown />
         </div>
         {isFetching ? <AnimesShowingSkeleton /> : <AnimesShowing />}
       </div>
 
-      <div className={`flex flex-wrap justify-center gap-x-5 gap-y-12 pr-11 pt-11 pb-16`}>
+      <div className={`flex flex-wrap justify-center gap-x-5 gap-y-12 pr-1.5 lg:pr-11 pt-11 pb-16`}>
         {data?.pages.map((page, pageI) => (
           <Fragment key={pageI}>
             {page.data.map((anime, animeI) => {

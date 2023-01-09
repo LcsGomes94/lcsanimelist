@@ -57,8 +57,8 @@ export default function Dropped() {
   }
 
   return (
-    <div className={`mt-20 pt-4 pr-3 pl-14 gap-2 ${isMenuOpen ? 'ml-52' : 'ml-[3.375rem]'}`}>
-      <div className={`flex items-center justify-start pr-11 w-full`}>
+    <div className={`mt-20 pt-4 pr-3 pl-8 lg:pl-14 gap-2 ml-[4.25rem] ${isMenuOpen ? 'lg:ml-52' : 'lg:ml-[3.375rem]'}`}>
+      <div className={`flex items-center justify-start pr-2 lg:pr-11 w-full`}>
         <div className={`flex flex-1 min-w-0 items-center gap-3 pr-3`}>
           <OrderByDropdown />
           <GenresDropdown />
@@ -67,7 +67,7 @@ export default function Dropped() {
         <AnimesShowing />
       </div>
 
-      <div className={`flex flex-wrap justify-center gap-x-5 gap-y-12 pr-11 pt-11 pb-16`}>
+      <div className={`flex flex-wrap justify-center gap-x-5 gap-y-12 pr-1.5 lg:pr-11 pt-11 pb-16`}>
         {favoriteList().map((anime, animeI, array) => {
           const isLast = animeI === array.length - 1
           return <AnimeCard cardRef={isLast ? lastAnimeElement : null} key={anime.mal_id} anime={anime} />

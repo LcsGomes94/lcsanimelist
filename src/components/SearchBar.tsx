@@ -91,7 +91,7 @@ export default function SearchBar() {
     }
 
     return (
-        <div className={`flex justify-center px-12 basis-0 grow-[2] relative`} >
+        <div className={`flex justify-center px-5 lg:px-12 basis-0 grow-[2] relative`} >
             <div className={`relative max-w-[600px] w-full`}>
                 <div className={`flex grow`}>
                     <input onKeyDown={(e) => {
@@ -100,31 +100,31 @@ export default function SearchBar() {
                         }}
                         disabled={router.asPath === '/seasonal'}
                         ref={inputElement} value={inputValue} type="text" placeholder="Search"
-                        className={`w-full h-11 pl-6 pr-1.5 pb-0.5 border border-r-0 border-gray-300 dark:border-gray-500
+                        className={`w-full h-10 lg:h-11 pl-5 lg:pl-6 pr-1.5 pb-0.5 border border-r-0 border-gray-300 dark:border-gray-500
                         dark:text-gray-300 text-gray-600 bg-inherit dark:placeholder:opacity-50 rounded-full rounded-r-none
                         disabled:opacity-40 disabled:cursor-not-allowed`}
                         onChange={handleInputValue} onFocus={() => setIsInputFocused(true)} onBlur={() => setIsInputFocused(false)} />
                     {inputValue.length >= 1 &&
-                        <button onClick={() => clearInputValue(inputElement)} className={`flex items-center pr-6 border-y border-gray-300 dark:border-gray-500 group`}>
+                        <button onClick={() => clearInputValue(inputElement)} className={`flex items-center pr-5 lg:pr-6 border-y border-gray-300 dark:border-gray-500 group`}>
                             <div className={`text-gray-300 dark:text-gray-500 group-hover:text-gray-500 dark:group-hover:text-gray-300`} >
-                                <CloseIcon />
+                                <CloseIcon className={`h-[19px] w-[19px] lg:h-[21px] lg:w-[21px]`} />
                             </div>
                         </button>}
                     <div className={`flex border-y border-gray-300 dark:border-gray-500 ${router.asPath === '/seasonal' ? 'opacity-40' : ''}`}>
-                        <div className={`h-8 bg-gray-300 dark:bg-gray-500 w-[1px] self-center`} />
+                        <div className={`h-7 lg:h-8 bg-gray-300 dark:bg-gray-500 w-[1px] self-center`} />
                     </div>
                 </div>
                 {isInputFocused &&
                     <SearchHistory />}
             </div>
-            <button className="border border-l-0 rounded-r-full border-gray-300 dark:border-gray-500 px-6 hover:bg-gray-50 dark:hover:bg-gray-800
+            <button className="border border-l-0 rounded-r-full border-gray-300 dark:border-gray-500 px-5 lg:px-6 hover:bg-gray-50 dark:hover:bg-gray-800
             disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-inherit dark:disabled:hover:bg-inherit"
             onClick={() => {
                 handleSearch(inputElement)
                 resetPage()
             }}
             disabled={router.asPath === '/seasonal'} >
-                <SearchIcon />
+                <SearchIcon className={`h-[19px] lg:h-[21px] w-[19px] lg:w-[21px]`} />
             </button>
         </div>
     )
