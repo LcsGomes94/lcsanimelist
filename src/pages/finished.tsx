@@ -5,6 +5,8 @@ import EditModal from "../components/EditModal";
 import GenreFilterGroup from "../components/GenreFilterGroup";
 import GenresDropdown from "../components/GenresDropdown";
 import OrderByDropdown from "../components/OrderByDropdown";
+import SearchModal from "../components/SearchModal";
+import UserModal from "../components/UserModal";
 import { useFavorite } from "../contexts/FavoriteContext";
 import { useMenu } from "../contexts/MenuContext";
 import { useModal } from "../contexts/ModalContext";
@@ -17,6 +19,7 @@ export default function Finished() {
   const { favoritedSearchQuery, orderBy, genresFilter, handleSetOrderBy } = useSearch()
   const { isMenuOpen } = useMenu()
   const { isEditModalOpen } = useModal()
+  const { isSearchModalOpen, isUserModalOpen } = useModal()
 
   const observer = useRef<IntersectionObserver | null>(null)
   const lastAnimeElement = useRef<HTMLDivElement>(null)
@@ -39,7 +42,7 @@ export default function Finished() {
         observer.current.disconnect()
       }
     }
-  },[hasMore, page])
+  }, [hasMore, page])
 
   useEffect(() => {
     orderBy !== 'Tier' && handleSetOrderBy('Tier')
@@ -57,23 +60,33 @@ export default function Finished() {
   }
 
   return (
-    <div className={`mt-20 pt-4 pr-3 pl-8 lg:pl-14 gap-2 ml-[4.25rem] ${isMenuOpen ? 'lg:ml-52' : 'lg:ml-[3.375rem]'}`}>
-      <div className={`flex items-center justify-start pr-2 lg:pr-11 w-full`}>
-        <div className={`flex flex-1 min-w-0 items-center gap-3 pr-3`}>
+    <div className={`mt-14 md:mt-20 pt-1.5 md:pt-4 px-4 md:pr-3 md:pl-8 lg:pl-14 gap-2 md:ml-[4.25rem] ${isMenuOpen ? 'lg:ml-52' : 'lg:ml-[3.375rem]'}`}>
+      <div className={`flex items-center justify-start md:pr-2 lg:pr-11 w-full`}>
+        <div className={`flex flex-1 min-w-0 items-center gap-2.5 md:gap-3 pr-3 z-20`}>
           <OrderByDropdown />
           <GenresDropdown />
-          <GenreFilterGroup />
+          <GenreFilterGroup className={`hidden md:flex`} />
         </div>
-        <AnimesShowing />
+        <AnimesShowing className={'hidden'} />
+      </div>
+      <div>
+        <div className={`flex items-center justify-start md:pr-2 lg:pr-11 w-full mt-2.5 md:hidden`}>
+          <div className={`flex flex-1 min-w-0 items-center gap-3 pr-3`}>
+            <GenreFilterGroup />
+          </div>
+          <AnimesShowing />
+        </div>
       </div>
 
-      <div className={`flex flex-wrap justify-center gap-x-5 gap-y-12 pr-1.5 lg:pr-11 pt-11 pb-16`}>
+      <div className={`flex flex-wrap justify-center gap-x-5 gap-y-7 md:gap-y-12 md:pr-1.5 lg:pr-11 pt-4 md:pt-11 pb-24 md:pb-16`}>
         {favoriteList().map((anime, animeI, array) => {
           const isLast = animeI === array.length - 1
           return <AnimeCard cardRef={isLast ? lastAnimeElement : null} key={anime.mal_id} anime={anime} />
         })}
       </div>
       {isEditModalOpen && <EditModal />}
+      {isSearchModalOpen && <SearchModal />}
+      {isUserModalOpen && <UserModal />}
     </div>
   )
 }

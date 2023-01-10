@@ -14,6 +14,12 @@ type ModalContextType = {
     modalCaller: CallerType | null
     selectedTier: 'SS' | 'S' | 'A' | 'B' | 'C' | 'D' | 'E' | null
     handleSetSelectedTier: (tier: 'SS' | 'S' | 'A' | 'B' | 'C' | 'D' | 'E') => void
+    handleOpenUserModal: () => void
+    handleCloseUserModal: () => void
+    handleOpenSearchModal: () => void
+    handleCloseSearchModal: () => void
+    isUserModalOpen: boolean
+    isSearchModalOpen: boolean
 }
 
 type CallerType = {
@@ -35,6 +41,8 @@ const ModalContext = createContext<ModalContextType>({} as ModalContextType)
 export function ModalContextProvider({ children }: ModalContextProviderProps) {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
     const [isMoveModalOpen, setIsMoveModalOpen] = useState(false)
+    const [isUserModalOpen, setIsUserModalOpen] = useState(false)
+    const [isSearchModalOpen, setIsSearchModalOpen] = useState(false)
     const [modalCaller, setModalCaller] = useState<CallerType | null>(null)
     const [selectedTier, setSelectedTier] = useState<'SS' | 'S' | 'A' | 'B' | 'C' | 'D' | 'E'>('SS')
 
@@ -62,10 +70,26 @@ export function ModalContextProvider({ children }: ModalContextProviderProps) {
         setSelectedTier(tier)
     }
 
+    function handleOpenUserModal() {
+        setIsUserModalOpen(true)
+    }
+
+    function handleCloseUserModal() {
+        setIsUserModalOpen(false)
+    }
+
+    function handleOpenSearchModal() {
+        setIsSearchModalOpen(true)
+    }
+
+    function handleCloseSearchModal() {
+        setIsSearchModalOpen(false)
+    }
+
     return (
         <ModalContext.Provider value={{
-            isEditModalOpen, isMoveModalOpen, handleOpenEditModal, handleOpenMoveModal, handleCloseEditModal,
-            handleCloseMoveModal, modalCaller, selectedTier, handleSetSelectedTier
+            isEditModalOpen, isMoveModalOpen, handleOpenEditModal, handleOpenMoveModal, handleCloseEditModal, handleCloseMoveModal, modalCaller, selectedTier,
+            handleSetSelectedTier, handleOpenUserModal, handleCloseUserModal, handleOpenSearchModal, handleCloseSearchModal, isUserModalOpen, isSearchModalOpen
         }}>
             {children}
         </ModalContext.Provider>

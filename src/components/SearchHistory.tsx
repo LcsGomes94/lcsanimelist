@@ -56,7 +56,8 @@ export default function SearchHistory() {
     }
 
     return (
-        <div className={`flex absolute bg-inherit w-full border border-t-0 border-gray-200 dark:border-gray-600 rounded-3xl min-w-[320px] overflow-hidden ${itemsToDisplay().length === 0 && 'hidden'}`}>
+        <div className={`flex md:absolute bg-inherit w-full md:border border-t-0 border-gray-200 dark:border-gray-600 rounded-3xl min-w-[320px]
+        overflow-hidden ${itemsToDisplay().length === 0 && 'hidden'}`}>
             <ul className={`w-full`}>
                 {itemsToDisplay().map((item, i) => <SearchHistoryItem title={item.title} type={item.type} key={item.title + i}
                     selected={inputValue === item.title && displayItemIndex - 1 === i} />)}

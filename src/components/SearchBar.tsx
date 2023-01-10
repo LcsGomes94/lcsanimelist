@@ -6,14 +6,20 @@ import SearchHistory from "./SearchHistory";
 import { useRouter } from 'next/router'
 import z from 'zod'
 import { useFavorite } from "../contexts/FavoriteContext";
+import { useModal } from "../contexts/ModalContext";
 
-export default function SearchBar() {
+type SearchBarProps = {
+    className?: string
+}
+
+export default function SearchBar({ className }: SearchBarProps) {
     const { inputValue, handleInputValue, clearInputValue, handleSearch, displayItemIndex, originalInputValue, historyItemsToDisplay,
         handleDisplayItemIndex, handleOriginalInputValue, updateInputValue } = useSearch()
     const inputElement = useRef<HTMLInputElement>(null)
     const [isInputFocused, setIsInputFocused] = useState(false)
     const { data: animeHintData } = useAnimesHintData()
     const { favoritedAnimes, resetPage } = useFavorite()
+    const { isSearchModalOpen, handleCloseSearchModal } = useModal()
     const router = useRouter()
 
     // Removes excess spaces it may contains
@@ -65,6 +71,7 @@ export default function SearchBar() {
         if (key === 'Enter') {
             handleSearch(inputElement)
             resetPage()
+            handleCloseSearchModal()
             displayItemIndex !== 0 && handleDisplayItemIndex('reset')
             originalInputValue !== '' && handleOriginalInputValue('')
         } else if (key === 'ArrowDown') {
@@ -91,7 +98,7 @@ export default function SearchBar() {
     }
 
     return (
-        <div className={`flex justify-center px-5 lg:px-12 basis-0 grow-[2] relative`} >
+        <div className={`flex justify-center pl-3 md:px-5 lg:px-12 basis-0 grow-[2] relative ${className}`} >
             <div className={`relative max-w-[600px] w-full`}>
                 <div className={`flex grow`}>
                     <input onKeyDown={(e) => {
@@ -99,6 +106,7 @@ export default function SearchBar() {
                             handleOnKeyDown(e.key, e.ctrlKey)
                         }}
                         disabled={router.asPath === '/seasonal'}
+                        autoFocus={!className}
                         ref={inputElement} value={inputValue} type="text" placeholder="Search"
                         className={`w-full h-10 lg:h-11 pl-5 lg:pl-6 pr-1.5 pb-0.5 border border-r-0 border-gray-300 dark:border-gray-500
                         dark:text-gray-300 text-gray-600 bg-inherit dark:placeholder:opacity-50 rounded-full rounded-r-none
@@ -114,7 +122,7 @@ export default function SearchBar() {
                         <div className={`h-7 lg:h-8 bg-gray-300 dark:bg-gray-500 w-[1px] self-center`} />
                     </div>
                 </div>
-                {isInputFocused &&
+                {!isSearchModalOpen && isInputFocused &&
                     <SearchHistory />}
             </div>
             <button className="border border-l-0 rounded-r-full border-gray-300 dark:border-gray-500 px-5 lg:px-6 hover:bg-gray-50 dark:hover:bg-gray-800
@@ -122,6 +130,7 @@ export default function SearchBar() {
             onClick={() => {
                 handleSearch(inputElement)
                 resetPage()
+                handleCloseSearchModal()
             }}
             disabled={router.asPath === '/seasonal'} >
                 <SearchIcon className={`h-[19px] lg:h-[21px] w-[19px] lg:w-[21px]`} />

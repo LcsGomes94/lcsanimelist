@@ -2,14 +2,18 @@ import { useSearch } from "../contexts/SearchContext";
 import { useState } from "react";
 import GenreFilterItem from "./GenreFilterItem";
 
-export default function GenreFilterGroup() {
+type GenreFilterGroupType = {
+    className?: string
+}
+
+export default function GenreFilterGroup({ className }: GenreFilterGroupType) {
     const [genresScrollStage, setGenresScrollStage] = useState<'start' | 'end' | 'middle'>('start')
     const { genresFilter } = useSearch()
 
     return (
-        <>
+        <div className={`flex flex-1 min-w-0 items-center gap-3 ${className}`}>
             <div className={`w-8 h-7 -mr-11 z-10 bg-gradient-to-r from-white dark:from-gray-900 to-transparent ${genresScrollStage === 'start' ? 'hidden' : ''}`} />
-            <div className={`flex flex-1 min-w-0 gap-3 whitespace-nowrap scrollbar-none overflow-hidden hover:overflow-x-auto`}
+            <div className={`flex flex-1 min-w-0 gap-2.5 md:gap-3 whitespace-nowrap scrollbar-none overflow-hidden hover:overflow-x-auto`}
                 onWheel={e => {
                     const div = e.currentTarget
                     const deltaY = -e.deltaY
@@ -24,6 +28,6 @@ export default function GenreFilterGroup() {
                 ))}
             </div>
             <div className={`w-8 h-7 -ml-11 z-10 bg-gradient-to-r from-transparent to-white dark:to-gray-900 ${genresScrollStage === 'end' ? 'hidden' : ''}`} />
-        </>
+        </div>
     )
 }

@@ -4,7 +4,11 @@ import { useSearch } from "../contexts/SearchContext";
 import { useAnimesDisplayData } from "../hooks/useAnimesDisplayData";
 import { useAnimesSeasonalData } from "../hooks/useAnimesSeasonalData";
 
-export default function AnimesShowing() {
+type AnimesShowingType = {
+    className?: string
+}
+
+export default function AnimesShowing({ className }: AnimesShowingType) {
     const { data: animesDisplayData } = useAnimesDisplayData()
     const { data: animesSeasonalData } = useAnimesSeasonalData()
     const { filterFavorite, page } = useFavorite()
@@ -18,9 +22,9 @@ export default function AnimesShowing() {
 
     if (router.asPath === '/') {
         return (
-            <div>
+            <div className={`block md:block ${className}`}>
                 {animesDisplayData?.pages !== undefined &&
-                    <h3 className={`text-sm text-cyan-600 dark:text-cyan-400 ml-11 whitespace-nowrap`}>
+                    <h3 className={`text-xs md:text-sm text-cyan-600 dark:text-cyan-400 ml-5 md:ml-11 whitespace-nowrap`}>
                         {`Showing: ${animesDisplayData?.pages.length * 24 < animesDisplayData?.pages[0].pagination.items.total ? animesDisplayData?.pages.length * 24
                             : animesDisplayData?.pages[0].pagination.items.total}/${animesDisplayData?.pages[0].pagination.items.total}`}
                     </h3>}
@@ -28,9 +32,9 @@ export default function AnimesShowing() {
         )
     } else if (router.asPath === '/seasonal') {
         return (
-            <div>
+            <div className={`block md:block ${className}`}>
                 {animesSeasonalData?.pages !== undefined &&
-                    <h3 className={`text-sm text-cyan-600 dark:text-cyan-400 ml-11 whitespace-nowrap`}>
+                    <h3 className={`text-xs md:text-sm text-cyan-600 dark:text-cyan-400 ml-5 md:ml-11 whitespace-nowrap`}>
                         {`Showing: ${animesSeasonalData?.pages.length * 24 < animesSeasonalData?.pages[0].pagination.items.total ? animesSeasonalData?.pages.length * 24
                             : animesSeasonalData?.pages[0].pagination.items.total}/${animesSeasonalData?.pages[0].pagination.items.total}`}
                     </h3>}
@@ -39,19 +43,19 @@ export default function AnimesShowing() {
     } else {
         return (
             router.asPath === '/watch_list' ?
-                <div>
-                    <h3 className={`text-sm text-cyan-600 dark:text-cyan-400 ml-11 whitespace-nowrap`}>
+                <div className={`block md:block ${className}`}>
+                    <h3 className={`text-xs md:text-sm text-cyan-600 dark:text-cyan-400 ml-5 md:ml-11 whitespace-nowrap`}>
                         {`Showing: ${getShowing('watch').visible}/${getShowing('watch').total}`}
                     </h3>
                 </div> :
                 router.asPath === '/finished' ?
-                    <div>
-                        <h3 className={`text-sm text-cyan-600 dark:text-cyan-400 ml-11 whitespace-nowrap`}>
+                    <div className={`block md:block ${className}`}>
+                        <h3 className={`text-xs md:text-sm text-cyan-600 dark:text-cyan-400 ml-5 md:ml-11 whitespace-nowrap`}>
                             {`Showing: ${getShowing('finished').visible}/${getShowing('finished').total}`}
                         </h3>
                     </div> :
-                    <div>
-                        <h3 className={`text-sm text-cyan-600 dark:text-cyan-400 ml-11 whitespace-nowrap`}>
+                    <div className={`block md:block ${className}`}>
+                        <h3 className={`text-xs md:text-sm text-cyan-600 dark:text-cyan-400 ml-5 md:ml-11 whitespace-nowrap`}>
                             {`Showing: ${getShowing('dropped').visible}/${getShowing('finished').total}`}
                         </h3>
                     </div>

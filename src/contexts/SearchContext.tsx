@@ -9,7 +9,7 @@ type SearchContextProviderProps = {
 type SearchContextType = {
     inputValue: string
     handleInputValue: (e: ChangeEvent<HTMLInputElement>) => void
-    clearInputValue: (inputElement: RefObject<HTMLInputElement>) => void
+    clearInputValue: (inputElement?: RefObject<HTMLInputElement>) => void
     handleSelectSearchItem: (newValue: string) => void
     handleSearch: (inputElement: RefObject<HTMLInputElement>) => void
     historyItemsToDisplay: () => { title: string, type: 'old' | 'new' }[] | []
@@ -114,8 +114,8 @@ export function SearchContextProvider({ children }: SearchContextProviderProps) 
         setInputValue(e.target.value)
     }
 
-    function clearInputValue(inputElement: RefObject<HTMLInputElement>) {
-        inputElement.current?.focus()
+    function clearInputValue(inputElement?: RefObject<HTMLInputElement>) {
+        inputElement?.current?.focus()
         setInputValue('')
         displayItemIndex !== 0 && handleDisplayItemIndex('reset')
         originalInputValue !== '' && handleOriginalInputValue('')

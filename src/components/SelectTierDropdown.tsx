@@ -28,7 +28,7 @@ export default function SelectTierDropdown({ removeFavorite }: SelectTierDropdow
     const { selectedTier, handleSetSelectedTier } = useModal()
 
     return (
-        <button disabled={removeFavorite} className={`relative w-40 h-8 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600
+        <button disabled={removeFavorite} className={`relative text-sm md:text-base w-[8.5rem] md:w-40 h-7 md:h-8 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600
         ${isOpen ? 'rounded-b-none bg-gray-200 dark:bg-gray-600' : 'bg-gray-100 dark:bg-gray-700'} ${removeFavorite ? 'cursor-not-allowed opacity-50' : 'cursor-default'}`}
             onBlur={() => {
                 isOpen && setIsOpen(false)
@@ -48,7 +48,7 @@ export default function SelectTierDropdown({ removeFavorite }: SelectTierDropdow
                 ${isOpen ? '' : 'hidden'}`}>
                 <ul>
                     {tierArray.map(tier => (
-                        <li key={tier} className={`group h-8 w-full`}
+                        <li key={tier} className={`group h-7 md:h-8 w-full`}
                             onMouseDown={() => {
                                 setIsOpen(false)
                                 handleSetSelectedTier(tier)
