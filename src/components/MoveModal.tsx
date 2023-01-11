@@ -84,7 +84,7 @@ export default function MoveModal() {
                         <EditIcon className={`w-[19px] h-[16px] md:w-[21px] md:h-[18px]`} />
                         <h5 className={`text-sm md:text-base`}>Personal Note</h5>
                     </div>
-                    <textarea value={personalNote} placeholder='Enter text' autoFocus
+                    <textarea value={personalNote} placeholder='Enter text'
                         className={`h-24 md:h-32 w-full bg-inherit text-xs md:text-sm md:leading-[1.125rem] py-1 md:py-2 px-2.5 md:px-4 resize-none textarea-scroll-light
                         dark:textarea-scroll-dark dark:placeholder:opacity-50`}
                         onChange={e => {
