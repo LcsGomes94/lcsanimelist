@@ -11,6 +11,7 @@ import { FavoriteContextProvider } from '../contexts/FavoriteContext'
 import { useState } from 'react'
 import Nav from '../components/Nav'
 import { ModalContextProvider } from '../contexts/ModalContext'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const [queryClient] = useState(() => new QueryClient())
@@ -31,6 +32,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
                     <Header />
                     <Nav />
                     <Component {...pageProps} />
+                    <Analytics />
                   </ModalContextProvider>
                 </FavoriteContextProvider>
               </SearchContextProvider>
