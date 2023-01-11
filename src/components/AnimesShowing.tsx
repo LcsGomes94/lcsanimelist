@@ -56,7 +56,7 @@ export default function AnimesShowing({ className }: AnimesShowingType) {
                     </div> :
                     <div className={`block md:block ${className}`}>
                         <h3 className={`text-xs md:text-sm text-cyan-600 dark:text-cyan-400 ml-5 md:ml-11 whitespace-nowrap`}>
-                            {`Showing: ${getShowing('dropped').visible}/${getShowing('finished').total}`}
+                            {`Showing: ${getShowing('dropped').visible}/${getShowing('dropped').total}`}
                         </h3>
                     </div>
         )
