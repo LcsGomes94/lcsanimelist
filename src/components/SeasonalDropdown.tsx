@@ -42,8 +42,7 @@ export default function SeasonalDropdown() {
                 </h5>
                 <DropdownIcon className={`ml-auto ${isOpen ? 'rotate-180' : ''}`} />
             </div>
-            <div className={`absolute w-full bg-gray-100 dark:bg-gray-700 rounded-md rounded-t-none mt-1 overflow-auto h-40 dark:dropdown-scroll-dark dropdown-scroll-light
-                ${isOpen ? '' : 'hidden'}`}>
+            <div className={`absolute w-full bg-gray-100 dark:bg-gray-700 rounded-md rounded-t-none mt-1 overflow-auto h-40 dark:dropdown-scroll-dark dropdown-scroll-light ${isOpen ? '' : 'hidden'}`}>
                 <ul>
                     {getOptions().map(option => (
                         <li key={option.year + option.season} className={`group h-8 w-full`}
@@ -55,14 +54,10 @@ export default function SeasonalDropdown() {
                             onMouseEnter={() => {
                                 lastHovered !== (option.year + option.season) && setLastHovered(option.year + option.season)
                             }} >
-                            <div className={`px-3 group-hover:bg-gray-200 dark:group-hover:bg-gray-600
-                                ${(seasonal.year + seasonal.season === option.year + option.season && lastHovered === '') ||
-                                (lastHovered === option.year + option.season ) ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
+                            <div className={`px-3 group-hover:bg-gray-200 dark:group-hover:bg-gray-600 ${(seasonal.year + seasonal.season === option.year + option.season && lastHovered === '') || (lastHovered === option.year + option.season) ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
                                 <div className={`h-[1px] bg-gray-200 dark:bg-gray-600`}></div>
                             </div>
-                            <div className={`flex items-center px-3 pb-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 h-full
-                                ${(seasonal.year + seasonal.season === option.year + option.season && lastHovered === '') ||
-                                (lastHovered === option.year + option.season ) ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
+                            <div className={`flex items-center px-3 pb-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 h-full ${(seasonal.year + seasonal.season === option.year + option.season && lastHovered === '') || (lastHovered === option.year + option.season) ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
                                 <h5>
                                     {`${option.year} - ${option.season}`}
                                 </h5>

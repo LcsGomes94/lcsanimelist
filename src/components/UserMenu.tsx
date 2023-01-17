@@ -27,19 +27,17 @@ export default function UserMenu() {
 
     return (
         <div className={`flex justify-end gap-5 lg:gap-6 flex-1 pr-1 md:pr-1.5`}>
-            <button onClick={handleToggleTheme} className={`flex justify-center items-center h-8 md:h-10 lg:h-11 w-8 md:w-10 lg:w-11 rounded-full
-            hover:bg-gray-100 dark:hover:bg-gray-700 transition-opacity duration-700 ${opacity === 100 ? 'opacity-100' : 'opacity-0'}`}>
+            <button onClick={handleToggleTheme} className={`flex justify-center items-center h-8 md:h-10 lg:h-11 w-8 md:w-10 lg:w-11 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-opacity duration-700 ${opacity === 100 ? 'opacity-100' : 'opacity-0'}`}>
                 {theme === 'light' ?
-                <MoonIcon className={`w-6 md:w-7 lg:w-8 h-6 md:h-7 lg:h-8`} /> :
-                <SunIcon className={`w-6 md:w-7 lg:w-8 h-6 md:h-7 lg:h-8`} />}
+                    <MoonIcon className={`w-6 md:w-7 lg:w-8 h-6 md:h-7 lg:h-8`} /> :
+                    <SunIcon className={`w-6 md:w-7 lg:w-8 h-6 md:h-7 lg:h-8`} />}
             </button>
             <button onClick={() => {
                 clearInputValue()
                 handleOpenSearchModal()
             }}
-            disabled={router.asPath === '/seasonal'}
-            className={`flex justify-center items-center md:hidden pb-[1px] hover:bg-gray-100 dark:hover:bg-gray-700 h-8 w-8 rounded-full
-            transition-opacity duration-700 ${opacity === 100 ? 'opacity-100' : 'opacity-0'} disabled:cursor-not-allowed disabled:opacity-50`}>
+                disabled={router.asPath === '/seasonal'}
+                className={`flex justify-center items-center md:hidden pb-[1px] hover:bg-gray-100 dark:hover:bg-gray-700 h-8 w-8 rounded-full transition-opacity duration-700 ${opacity === 100 ? 'opacity-100' : 'opacity-0'} disabled:cursor-not-allowed disabled:opacity-50`}>
                 <SearchIcon className={`h-[22px] w-[22px]`} />
             </button>
             <button onClick={() => handleOpenUserModal()} className={`flex md:hidden pl-1.5`}>

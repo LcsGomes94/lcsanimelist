@@ -21,11 +21,10 @@ export default function SearchHistoryItem({ type, title, selected }: SearchHisto
                 resetPage()
                 handleCloseSearchModal()
             }}>
-                <div className={`flex items-center gap-3.5 py-3 md:py-2.5 lg:py-3 md:px-5 lg:px-6
-                hover:bg-gray-100 dark:hover:bg-gray-700 bg-white dark:bg-gray-900 ${ selected ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
+                <div className={`flex items-center gap-3.5 py-3 md:py-2.5 lg:py-3 md:px-5 lg:px-6 hover:bg-gray-100 dark:hover:bg-gray-700 bg-white dark:bg-gray-900 ${selected ? 'bg-gray-100 dark:bg-gray-700' : ''}`}>
                     {type === 'old' ?
-                    <HistoryIcon className={`shrink-0 h-[21px] w-[21px] md:h-[19px] md:w-[19px] lg:h-[21px] lg:w-[21px]`} /> :
-                    <SearchIcon className={`shrink-0 h-[21px] w-[21px] md:h-[19px] md:w-[19px] lg:h-[21px] lg:w-[21px]`} />}
+                        <HistoryIcon className={`shrink-0 h-[21px] w-[21px] md:h-[19px] md:w-[19px] lg:h-[21px] lg:w-[21px]`} /> :
+                        <SearchIcon className={`shrink-0 h-[21px] w-[21px] md:h-[19px] md:w-[19px] lg:h-[21px] lg:w-[21px]`} />}
                     <h5 className={`text-ellipsis whitespace-nowrap overflow-hidden dark:text-gray-200 cursor-default`}>
                         {title}
                     </h5>

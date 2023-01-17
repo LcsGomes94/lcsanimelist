@@ -15,8 +15,7 @@ export default function AnimesShowingSkeleton({ className }: AnimesShowingSkelet
     }, [])
 
     return (
-        <div className={`ml-5 md:ml-11 h-4 md:h-5 w-24 md:w-28 bg-gray-100 dark:bg-gray-700 rounded-full animate-pulse
-        ${opacity === 100 ? 'opacity-100' : 'opacity-0'} block md:block ${className}`} />
+        <div className={`ml-5 md:ml-11 h-4 md:h-5 w-24 md:w-28 bg-gray-100 dark:bg-gray-700 rounded-full animate-pulse ${opacity === 100 ? 'opacity-100' : 'opacity-0'} block md:block ${className}`} />
     )
 
 }

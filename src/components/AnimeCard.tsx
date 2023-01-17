@@ -56,13 +56,11 @@ export default function AnimeCard({ anime, cardRef }: AnimeCardType) {
                     {
                         anime.genres.length > 0 ? anime.genres.slice(0, 4).map(genre => (
                             <div key={genre}
-                                className={`flex justify-center items-center rounded-full bg-gray-100 dark:bg-gray-700 text-cyan-700 dark:text-cyan-400
-                            text-xs h-5 px-2.5 whitespace-nowrap`}>
+                                className={`flex justify-center items-center rounded-full bg-gray-100 dark:bg-gray-700 text-cyan-700 dark:text-cyan-400 text-xs h-5 px-2.5 whitespace-nowrap`}>
                                 {genre}
                             </div>
                         )) :
-                            <div className={`flex justify-center items-center rounded-full bg-gray-100 dark:bg-gray-700 text-cyan-700 dark:text-cyan-400
-                            text-xs h-5 px-2.5 whitespace-nowrap`}>
+                            <div className={`flex justify-center items-center rounded-full bg-gray-100 dark:bg-gray-700 text-cyan-700 dark:text-cyan-400 text-xs h-5 px-2.5 whitespace-nowrap`}>
                                 {'Unknown'}
                             </div>
                     }

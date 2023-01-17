@@ -24,8 +24,7 @@ export default function SearchModal() {
 
     return (
         <div onClick={() => handleCloseSearchModal()} className={`fixed inset-0 px-4 py-2 bg-white dark:bg-gray-900 z-50 md:hidden`}>
-            <div onClick={e => e.stopPropagation()} className={`flex items-center h-14 w-full
-            transition-translate duration-100 ${transition === 100 ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div onClick={e => e.stopPropagation()} className={`flex items-center h-14 w-full transition-translate duration-100 ${transition === 100 ? 'translate-x-0' : 'translate-x-full'}`}>
                 <button onClick={() => handleCloseSearchModal()}>
                     <ArrowBackIcon />
                 </button>

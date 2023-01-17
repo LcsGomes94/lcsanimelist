@@ -28,8 +28,7 @@ export default function SelectTierDropdown({ removeFavorite }: SelectTierDropdow
     const { selectedTier, handleSetSelectedTier } = useModal()
 
     return (
-        <button disabled={removeFavorite} className={`relative text-sm md:text-base w-[8.5rem] md:w-40 h-7 md:h-8 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600
-        ${isOpen ? 'rounded-b-none bg-gray-200 dark:bg-gray-600' : 'bg-gray-100 dark:bg-gray-700'} ${removeFavorite ? 'cursor-not-allowed opacity-50' : 'cursor-default'}`}
+        <button disabled={removeFavorite} className={`relative text-sm md:text-base w-[8.5rem] md:w-40 h-7 md:h-8 rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 ${isOpen ? 'rounded-b-none bg-gray-200 dark:bg-gray-600' : 'bg-gray-100 dark:bg-gray-700'} ${removeFavorite ? 'cursor-not-allowed opacity-50' : 'cursor-default'}`}
             onBlur={() => {
                 isOpen && setIsOpen(false)
                 lastHovered && setLastHovered('')
@@ -44,8 +43,7 @@ export default function SelectTierDropdown({ removeFavorite }: SelectTierDropdow
                 </h5>
                 <DropdownIcon className={`ml-auto ${isOpen ? 'rotate-180' : ''}`} />
             </div>
-            <div className={`absolute w-full bg-gray-200 dark:bg-gray-600 rounded-md rounded-t-none mt-1 overflow-hidden
-                ${isOpen ? '' : 'hidden'}`}>
+            <div className={`absolute w-full bg-gray-200 dark:bg-gray-600 rounded-md rounded-t-none mt-1 overflow-hidden ${isOpen ? '' : 'hidden'}`}>
                 <ul>
                     {tierArray.map(tier => (
                         <li key={tier} className={`group h-7 md:h-8 w-full`}
@@ -56,13 +54,11 @@ export default function SelectTierDropdown({ removeFavorite }: SelectTierDropdow
                             }}
                             onMouseEnter={() => {
                                 lastHovered !== tier && setLastHovered(tier)
-                            }} >
-                            <div className={`px-3 group-hover:bg-gray-300 dark:group-hover:bg-gray-500
-                                ${(selectedTier === tier && lastHovered === '') || (lastHovered === tier) ? 'bg-gray-300 dark:bg-gray-500' : ''}`}>
+                            }}>
+                            <div className={`px-3 group-hover:bg-gray-300 dark:group-hover:bg-gray-500 ${(selectedTier === tier && lastHovered === '') || (lastHovered === tier) ? 'bg-gray-300 dark:bg-gray-500' : ''}`}>
                                 <div className={`h-[1px] bg-gray-300 dark:bg-gray-500`}></div>
                             </div>
-                            <div className={`flex items-center px-3 pb-0.5 hover:bg-gray-300 dark:hover:bg-gray-500 h-full
-                                ${(selectedTier === tier && lastHovered === '') || (lastHovered === tier) ? 'bg-gray-300 dark:bg-gray-500' : ''}`}>
+                            <div className={`flex items-center px-3 pb-0.5 hover:bg-gray-300 dark:hover:bg-gray-500 h-full ${(selectedTier === tier && lastHovered === '') || (lastHovered === tier) ? 'bg-gray-300 dark:bg-gray-500' : ''}`}>
                                 <h5>
                                     {tier + completeTier(tier)}
                                 </h5>

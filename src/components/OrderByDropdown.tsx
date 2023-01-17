@@ -25,8 +25,7 @@ export default function OrderByDropdown() {
                 </h5>
                 <DropdownIcon className={`ml-auto ${isOpen ? 'rotate-180' : ''}`} />
             </div>
-            <div className={`absolute w-full bg-gray-100 dark:bg-gray-700 rounded-md rounded-t-none mt-1 overflow-hidden
-                ${isOpen ? '' : 'hidden'}`}>
+            <div className={`absolute w-full bg-gray-100 dark:bg-gray-700 rounded-md rounded-t-none mt-1 overflow-hidden ${isOpen ? '' : 'hidden'}`}>
                 <ul>
                     <li className={`group h-8 w-full`}
                         onMouseDown={() => {
@@ -37,12 +36,10 @@ export default function OrderByDropdown() {
                         onMouseEnter={() => {
                             lastHovered !== 'Score' && setLastHovered('Score')
                         }} >
-                        <div className={`px-3 group-hover:bg-gray-200 dark:group-hover:bg-gray-600
-                                ${(orderBy === 'Score' && lastHovered === '') || (lastHovered === 'Score') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
+                        <div className={`px-3 group-hover:bg-gray-200 dark:group-hover:bg-gray-600 ${(orderBy === 'Score' && lastHovered === '') || (lastHovered === 'Score') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
                             <div className={`h-[1px] bg-gray-200 dark:bg-gray-600`}></div>
                         </div>
-                        <div className={`flex items-center px-3 pb-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 h-full
-                                ${(orderBy === 'Score' && lastHovered === '') || (lastHovered === 'Score') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
+                        <div className={`flex items-center px-3 pb-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 h-full ${(orderBy === 'Score' && lastHovered === '') || (lastHovered === 'Score') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
                             <h5>
                                 {`Order by: Score`}
                             </h5>
@@ -57,12 +54,10 @@ export default function OrderByDropdown() {
                         onMouseEnter={() => {
                             lastHovered !== 'Title' && setLastHovered('Title')
                         }} >
-                        <div className={`px-3 group-hover:bg-gray-200 dark:group-hover:bg-gray-600
-                                ${(orderBy === 'Title' && lastHovered === '') || (lastHovered === 'Title') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
+                        <div className={`px-3 group-hover:bg-gray-200 dark:group-hover:bg-gray-600 ${(orderBy === 'Title' && lastHovered === '') || (lastHovered === 'Title') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
                             <div className={`h-[1px] bg-gray-200 dark:bg-gray-600`}></div>
                         </div>
-                        <div className={`flex items-center px-3 pb-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 h-full
-                                ${(orderBy === 'Title' && lastHovered === '') || (lastHovered === 'Title') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
+                        <div className={`flex items-center px-3 pb-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 h-full ${(orderBy === 'Title' && lastHovered === '') || (lastHovered === 'Title') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
                             <h5>
                                 {`Order by: Title`}
                             </h5>
@@ -78,12 +73,10 @@ export default function OrderByDropdown() {
                             onMouseEnter={() => {
                                 lastHovered !== 'Tier' && setLastHovered('Tier')
                             }} >
-                            <div className={`px-3 group-hover:bg-gray-200 dark:group-hover:bg-gray-600
-                            ${(orderBy === 'Tier' && lastHovered === '') || (lastHovered === 'Tier') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
+                            <div className={`px-3 group-hover:bg-gray-200 dark:group-hover:bg-gray-600 ${(orderBy === 'Tier' && lastHovered === '') || (lastHovered === 'Tier') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
                                 <div className={`h-[1px] bg-gray-200 dark:bg-gray-600`}></div>
                             </div>
-                            <div className={`flex items-center px-3 pb-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 h-full
-                            ${(orderBy === 'Tier' && lastHovered === '') || (lastHovered === 'Tier') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
+                            <div className={`flex items-center px-3 pb-0.5 hover:bg-gray-200 dark:hover:bg-gray-600 h-full ${(orderBy === 'Tier' && lastHovered === '') || (lastHovered === 'Tier') ? 'bg-gray-200 dark:bg-gray-600' : ''}`}>
                                 <h5>
                                     {`Order by: Tier`}
                                 </h5>

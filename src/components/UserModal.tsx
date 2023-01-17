@@ -32,11 +32,9 @@ export default function UserModal() {
                 handleCloseUserModal()
             }, 200)
         }}
-            className={`flex items-end fixed inset-0 bg-black/50 z-50 md:hidden
-            transition-opacity duration-200 ${transition === 100 ? 'opacity-100' : 'opacity-0'}`}>
+            className={`flex items-end fixed inset-0 bg-black/50 z-50 md:hidden transition-opacity duration-200 ${transition === 100 ? 'opacity-100' : 'opacity-0'}`}>
             <div onClick={e => { e.stopPropagation() }}
-                className={`flex flex-col items-center w-full bg-white dark:bg-gray-900 rounded-t-3xl p-8
-                transition-translate duration-200 ${transition === 100 ? 'translate-y-0' : 'translate-y-full'}`}>
+                className={`flex flex-col items-center w-full bg-white dark:bg-gray-900 rounded-t-3xl p-8 transition-translate duration-200 ${transition === 100 ? 'translate-y-0' : 'translate-y-full'}`}>
                 {session ?
                     <img src={session.user?.image!} alt='img' className={`rounded-full border-2 border-cyan-600 dark:border-cyan-400 h-[70px] w-[70px] mb-1`} /> :
                     <GitHubIcon className={`w-[70px] h-[70px] mb-1`} />
