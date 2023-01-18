@@ -18,7 +18,7 @@ export default function Home() {
   const { data, fetchNextPage, hasNextPage, isFetching } = useAnimesDisplayData()
   const { normalizeAnime } = useFavorite()
   const { isMenuOpen } = useMenu()
-  const { handleSetOrderBy, orderBy } = useSearch()
+  const { resetSearchStates } = useSearch()
   const { isSearchModalOpen, isUserModalOpen } = useModal()
 
   const observer = useRef<IntersectionObserver | null>(null)
@@ -45,7 +45,7 @@ export default function Home() {
   }, [data])
 
   useEffect(() => {
-    orderBy !== 'Score' && handleSetOrderBy('Score')
+    resetSearchStates()
   }, [])
 
   return (

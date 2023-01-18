@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import z from 'zod'
 import { useSearch } from '../contexts/SearchContext'
 
@@ -23,7 +23,6 @@ export function useAnimesHintData() {
     return (
         useQuery(['hint', searchAnimeHintQuery], fetchAnimes, {
             staleTime: 24 * 60 * 60 * 1000,
-            cacheTime: 24 * 60 * 60 * 1000,
             enabled: searchAnimeHintQuery.length >= 1 && route.asPath === '/'
         })
     )

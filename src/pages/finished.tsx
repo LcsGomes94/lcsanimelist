@@ -16,7 +16,7 @@ export default function Finished() {
   const [hasMore, setHasMore] = useState(false)
 
   const { filterFavorite, loadMore, page } = useFavorite()
-  const { favoritedSearchQuery, orderBy, genresFilter, handleSetOrderBy } = useSearch()
+  const { favoritedSearchQuery, orderBy, genresFilter, resetSearchStates } = useSearch()
   const { isMenuOpen } = useMenu()
   const { isEditModalOpen } = useModal()
   const { isSearchModalOpen, isUserModalOpen } = useModal()
@@ -45,7 +45,7 @@ export default function Finished() {
   }, [hasMore, page])
 
   useEffect(() => {
-    orderBy !== 'Tier' && handleSetOrderBy('Tier')
+    resetSearchStates()
   }, [])
 
   function favoriteList() {

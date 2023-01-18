@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useInfiniteQuery } from 'react-query'
+import { useInfiniteQuery } from '@tanstack/react-query'
 import z from 'zod'
 import { useSearch } from '../contexts/SearchContext'
 
@@ -51,7 +51,6 @@ export function useAnimesSeasonalData() {
                 }
             },
             staleTime: 24 * 60 * 60 * 1000,
-            cacheTime: 24 * 60 * 60 * 1000,
             enabled: router.asPath === '/seasonal'
         })
     )

@@ -9,12 +9,14 @@ import AnimesShowingSkeleton from "../components/AnimesShowingSkeleton"
 import AnimeCardSkeletons from "../components/AnimeCardSkeletons"
 import UserModal from "../components/UserModal"
 import { useModal } from "../contexts/ModalContext"
+import { useSearch } from "../contexts/SearchContext"
 
 export default function Seasonal() {
   const { data, fetchNextPage, hasNextPage, isFetching } = useAnimesSeasonalData()
   const { normalizeAnime } = useFavorite()
   const { isMenuOpen } = useMenu()
   const { isUserModalOpen } = useModal()
+  const { resetSearchStates } = useSearch()
 
   const observer = useRef<IntersectionObserver | null>(null)
   const lastAnimeElement = useRef<HTMLDivElement>(null)
@@ -38,6 +40,10 @@ export default function Seasonal() {
       }
     }
   }, [data])
+
+  useEffect(() => {
+    resetSearchStates()
+  }, [])
 
   return (
     <div className={`mt-14 md:mt-20 pt-1.5 md:pt-4 px-4 md:pr-3 md:pl-8 lg:pl-14 gap-2 md:ml-[4.25rem] ${isMenuOpen ? 'lg:ml-52' : 'lg:ml-[3.375rem]'}`}>

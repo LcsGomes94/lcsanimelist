@@ -16,7 +16,7 @@ export default function WatchList() {
   const [hasMore, setHasMore] = useState(false)
 
   const { filterFavorite, loadMore, page } = useFavorite()
-  const { favoritedSearchQuery, orderBy, genresFilter, handleSetOrderBy } = useSearch()
+  const { favoritedSearchQuery, orderBy, genresFilter, resetSearchStates } = useSearch()
   const { isMenuOpen } = useMenu()
   const { isMoveModalOpen } = useModal()
   const { isSearchModalOpen, isUserModalOpen } = useModal()
@@ -45,7 +45,7 @@ export default function WatchList() {
   }, [hasMore, page])
 
   useEffect(() => {
-    orderBy !== 'Score' && handleSetOrderBy('Score')
+    resetSearchStates()
   }, [])
 
   function favoriteList() {

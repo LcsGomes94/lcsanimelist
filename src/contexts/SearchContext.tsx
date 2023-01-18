@@ -166,15 +166,19 @@ export function SearchContextProvider({ children }: SearchContextProviderProps) 
     }
 
     function resetSearchStates() {
-        setInputValue('')
-        router.asPath === '/finished' || router.asPath === '/dropped' ? setOrderBy('Tier') : setOrderBy('Score')
-        setGenresFilter('')
-        setSearchAnimeHintQuery('')
-        setSearchAnimeDisplayQuery('')
-        setDisplayItemIndex(0)
-        setOriginalInputValue('')
-        setFavoritedSearchQuery('')
-        setSeasonal({ year: currentYear, season: currentSeason })
+        if (router.asPath === '/finished' || router.asPath === '/dropped') {
+            orderBy !== 'Tier' && setOrderBy('Tier')
+        } else {
+            orderBy !== 'Score' && setOrderBy('Score')
+        }
+        inputValue !== '' && setInputValue('')
+        genresFilter !== '' && setGenresFilter('')
+        searchAnimeHintQuery !== '' && setSearchAnimeHintQuery('')
+        searchAnimeDisplayQuery !== '' && setSearchAnimeDisplayQuery('')
+        displayItemIndex !== 0 && setDisplayItemIndex(0)
+        originalInputValue !== '' && setOriginalInputValue('')
+        favoritedSearchQuery !== '' && setFavoritedSearchQuery('');
+        (seasonal.year !== currentYear || seasonal.season !== currentSeason) && setSeasonal({ year: currentYear, season: currentSeason })
     }
 
     function handleSetSeasonal(seasonal: seasonalType) {

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import z from 'zod'
 
 const seasonDataValidator = z.object({
@@ -22,9 +22,8 @@ export function useSeasonsData() {
     }
 
     return (
-        useQuery('seasons', fetchSeasons, {
+        useQuery(['seasons'], fetchSeasons, {
             staleTime: 24 * 60 * 60 * 1000,
-            cacheTime: 24 * 60 * 60 * 1000,
             enabled: router.asPath === '/seasonal'
         })
     )

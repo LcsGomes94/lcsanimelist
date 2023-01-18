@@ -3,14 +3,14 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import { useSearch } from "../contexts/SearchContext"
 import { useFavorite } from "../contexts/FavoriteContext"
-import { useQueryClient } from "react-query"
+import { useQueryClient } from "@tanstack/react-query"
 import { useMenu } from '../contexts/MenuContext'
 
 
 export default function Nav() {
     const router = useRouter()
     const { isMenuOpen } = useMenu()
-    const { resetSearchStates } = useSearch()
+    const { orderBy, genresFilter, searchAnimeDisplayQuery, seasonal } = useSearch()
     const { resetPage } = useFavorite()
     const queryClient = useQueryClient()
 
@@ -19,9 +19,7 @@ export default function Nav() {
             <div className={`flex md:flex-col gap-3 w-full justify-around px-1.5 md:px-0`}>
                 <Link href={'/'}
                     onClick={() => {
-                        resetSearchStates()
-                        resetPage()
-                        queryClient.clear()
+                        router.asPath !== '/' && queryClient.resetQueries({ queryKey: ['display', orderBy, genresFilter, searchAnimeDisplayQuery], exact: true })
                     }}
                     className={`flex flex-col lg:flex-row items-center justify-center lg:justify-start w-14 lg:w-full h-16 lg:h-8 md:pt-2 lg:pt-0 lg:px-2 lg:gap-3 md:hover:bg-gray-100 md:dark:hover:bg-gray-700 rounded-md ${router.asPath === '/' ? 'md:bg-gray-100 md:dark:bg-gray-700 text-teal-500 dark:text-teal-400' : ''}`}>
                     <HomeIcon className={`w-[28px] md:w-[31px] lg:w-[26px] h-[25px] md:h-[28px] lg:h-[23px]`} />
@@ -30,9 +28,7 @@ export default function Nav() {
                 </Link>
                 <Link href={'/seasonal'}
                     onClick={() => {
-                        resetSearchStates()
-                        resetPage()
-                        queryClient.clear()
+                        router.asPath !== '/seasonal' && queryClient.resetQueries({ queryKey: ['seasonal', seasonal], exact: true })
                     }}
                     className={`flex flex-col lg:flex-row items-center justify-center lg:justify-start w-14 lg:w-full h-16 lg:h-8 md:pt-2 lg:pt-0 lg:px-2 lg:gap-3 md:hover:bg-gray-100 md:dark:hover:bg-gray-700 rounded-md ${router.asPath === '/seasonal' ? 'md:bg-gray-100 md:dark:bg-gray-700 text-teal-500 dark:text-teal-400' : ''}`}>
                     <SeasonalIcon className={`w-[28px] md:w-[31px] lg:w-[26px] h-[25px] md:h-[28px] lg:h-[23px]`} />
@@ -42,9 +38,7 @@ export default function Nav() {
                 <div className={`hidden md:block h-[1px] bg-gray-200 dark:bg-gray-600`}></div>
                 <Link href={'/watch_list'}
                     onClick={() => {
-                        resetSearchStates()
                         resetPage()
-                        queryClient.clear()
                     }}
                     className={`flex flex-col lg:flex-row items-center justify-center lg:justify-start w-14 lg:w-full h-16 lg:h-8 md:pt-2 lg:pt-0 lg:px-2 lg:gap-3 md:hover:bg-gray-100 md:dark:hover:bg-gray-700 rounded-md ${router.asPath === '/watch_list' ? 'md:bg-gray-100 md:dark:bg-gray-700 text-teal-500 dark:text-teal-400' : ''}`}>
                     <WatchListIcon className={`w-[28px] md:w-[31px] lg:w-[26px] h-[25px] md:h-[28px] lg:h-[23px]`} />
@@ -53,9 +47,7 @@ export default function Nav() {
                 </Link>
                 <Link href={'/finished'}
                     onClick={() => {
-                        resetSearchStates()
                         resetPage()
-                        queryClient.clear()
                     }}
                     className={`flex flex-col lg:flex-row items-center justify-center lg:justify-start w-14 lg:w-full h-16 lg:h-8 md:pt-2 lg:pt-0 lg:px-2 lg:gap-3 md:hover:bg-gray-100 md:dark:hover:bg-gray-700 rounded-md ${router.asPath === '/finished' ? 'md:bg-gray-100 md:dark:bg-gray-700 text-teal-500 dark:text-teal-400' : ''}`}>
                     <FinishedIcon className={`w-[28px] md:w-[31px] lg:w-[26px] h-[25px] md:h-[28px] lg:h-[23px]`} />
@@ -64,9 +56,7 @@ export default function Nav() {
                 </Link>
                 <Link href={'/dropped'}
                     onClick={() => {
-                        resetSearchStates()
                         resetPage()
-                        queryClient.clear()
                     }}
                     className={`flex flex-col lg:flex-row items-center justify-center lg:justify-start w-14 lg:w-full h-16 lg:h-8 md:pt-2 lg:pt-0 lg:px-2 lg:gap-3 md:hover:bg-gray-100 md:dark:hover:bg-gray-700 rounded-md ${router.asPath === '/dropped' ? 'md:bg-gray-100 md:dark:bg-gray-700 text-teal-500 dark:text-teal-400' : ''}`}>
                     <DroppedIcon className={`w-[28px] md:w-[31px] lg:w-[26px] h-[25px] md:h-[28px] lg:h-[23px]`} />

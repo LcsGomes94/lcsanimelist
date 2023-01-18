@@ -1,14 +1,12 @@
 import Link from "next/link"
 import { Logo, MenuIcon } from "../assets"
 import { useMenu } from "../contexts/MenuContext"
-import { useSearch } from "../contexts/SearchContext";
-import { useQueryClient } from 'react-query'
-import { useFavorite } from "../contexts/FavoriteContext";
+import { useSearch } from "../contexts/SearchContext"
+import { useQueryClient } from '@tanstack/react-query'
 
 export default function MenuController() {
     const { handleToggleMenu } = useMenu()
-    const { resetSearchStates } = useSearch()
-    const { resetPage } = useFavorite()
+    const { resetSearchStates, orderBy, genresFilter, searchAnimeDisplayQuery } = useSearch()
     const queryClient = useQueryClient()
 
     return (
@@ -18,8 +16,7 @@ export default function MenuController() {
             </button>
             <Link href={'/'} onClick={() => {
                 resetSearchStates()
-                resetPage()
-                queryClient.clear()
+                queryClient.resetQueries({ queryKey: ['display', orderBy, genresFilter, searchAnimeDisplayQuery], exact: true })
             }} >
                 <Logo className={`h-[19px] md:h-[21px] lg:h-[24px] w-[112px] md:w-[124px] lg:w-[142px]`} />
             </Link>

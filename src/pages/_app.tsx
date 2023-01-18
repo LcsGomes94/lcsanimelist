@@ -6,7 +6,7 @@ import { SessionProvider } from "next-auth/react"
 import { ThemeContextProvider } from '../contexts/ThemeContext'
 import { MenuContextProvider } from '../contexts/MenuContext'
 import { SearchContextProvider } from '../contexts/SearchContext'
-import { QueryClientProvider, QueryClient } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { FavoriteContextProvider } from '../contexts/FavoriteContext'
 import { useState } from 'react'
 import Nav from '../components/Nav'
@@ -14,7 +14,13 @@ import { ModalContextProvider } from '../contexts/ModalContext'
 import { Analytics } from '@vercel/analytics/react'
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  const [queryClient] = useState(() => new QueryClient())
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        cacheTime: 1000 * 60 * 60 * 24, // 24 hours
+      }
+    }
+  }))
 
   return (
     <>
