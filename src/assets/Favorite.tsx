@@ -2,14 +2,17 @@ import { SVGProps, useState } from "react"
 
 type FavoriteIconProps = {
     isFavorite: boolean
+    isHovering?: boolean
 } & SVGProps<SVGSVGElement>
 
 export function FavoriteIcon(props: FavoriteIconProps) {
-    const [ isHovering, setIsHovering ] = useState(false)
+    const [isHovering, setIsHovering] = useState(false)
 
     return (
         <svg
-            onMouseEnter={() => setIsHovering(true)}
+            onMouseEnter={() => {
+                window.matchMedia("(min-width: 1024px)").matches && setIsHovering(true)
+            }}
             onMouseLeave={() => setIsHovering(false)}
             width={21}
             height={18}
@@ -19,7 +22,7 @@ export function FavoriteIcon(props: FavoriteIconProps) {
             className={props.className}
         >
             <path
-                opacity={isHovering ? 0.5 : props.isFavorite ? 1 : 0.01}
+                opacity={props.isHovering || isHovering ? 0.5 : props.isFavorite ? 1 : 0.01}
                 d="M5.799 1.739c1.913-.427 3.939 1.397 4.713 2.362 1.758-2.514 3.376-2.362 4.361-2.362.985 0 3.025.762 3.517 2.972.493 2.21-.21 4.04-1.336 5.716-.9 1.34-4.737 4.47-6.542 5.868-.962-.61-3.166-2.119-4.291-3.277-1.407-1.448-3.447-4.04-3.658-6.402-.211-2.362.844-4.343 3.236-4.877Z"
                 fill="#14B8A6"
             />

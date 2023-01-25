@@ -1,4 +1,4 @@
-import { RefObject } from "react";
+import { RefObject, useState } from "react";
 import { EditIcon, FavoriteIcon, MoveIcon, ScoreIcon } from "../assets";
 import { useFavorite } from "../contexts/FavoriteContext";
 import { useModal } from "../contexts/ModalContext";
@@ -36,6 +36,7 @@ function background(t: 'SS' | 'S' | 'A' | 'B' | 'C' | 'D' | 'E' | null | undefin
 export default function AnimeCard({ anime, cardRef }: AnimeCardType) {
     const { addFavorite, removeFavorite, isFavorited } = useFavorite()
     const { handleOpenEditModal, handleOpenMoveModal } = useModal()
+    const [isHoveringFavorite, setIsHoveringFavorite] = useState(false)
 
     return (
         <div ref={cardRef} className={`flex flex-col justify-center flex-1 min-w-[19rem] lg:min-w-[22rem] max-w-[24rem]`}>
@@ -95,8 +96,14 @@ export default function AnimeCard({ anime, cardRef }: AnimeCardType) {
                                 <button className={`flex justify-center items-center h-7 w-7 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600`}
                                     onClick={() => {
                                         anime.stage || isFavorited(anime.mal_id) ? removeFavorite(anime.mal_id) : addFavorite(anime)
+                                    }}
+                                    onMouseEnter={() => {
+                                        window.matchMedia("(min-width: 1024px)").matches && setIsHoveringFavorite(true)
+                                    }}
+                                    onMouseLeave={() => {
+                                        setIsHoveringFavorite(false)
                                     }}>
-                                    <FavoriteIcon isFavorite={anime.stage !== undefined || isFavorited(anime.mal_id) ? true : false} />
+                                    <FavoriteIcon isFavorite={anime.stage !== undefined || isFavorited(anime.mal_id) ? true : false} isHovering={isHoveringFavorite} />
                                 </button> :
                                 <button className={`flex justify-center items-center h-7 w-7 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600`}
                                     onClick={() => {
